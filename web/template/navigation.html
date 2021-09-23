@@ -1,0 +1,73 @@
+<div class="topnav" id="id_topnav">
+    <ul>
+        <li><a {% if session.current_page == "translate_sentence_blue" %} 
+                class="active" 
+        {% endif %}
+            href="/">Translate Text</a></li>      
+        
+        {% if session.login_in %}
+        <li style="border-right: none; float:right; margin-right: 20px">
+            <a id="log_out">Log out</a>
+        </li>
+        {% else %}
+        <li>
+            <a {% if session.current_page == "auth_blue" %} 
+                class="active" 
+                {% endif %}
+                href="/login_interface">Login</a>
+        </li>
+        {% endif %}        
+        <li>
+        {% if session.access_level == "user" 
+        or session.access_level == "admin" %}
+            <a  {% if session.current_page == "translate_file_blue" %} 
+                    class="active" 
+                {% endif %}
+                href="/translate_file_interface">Translate Document</a>  
+        {% endif %} 
+        </li>
+        <li>
+        {% if session.access_level == "admin" %}
+            <a  {% if session.current_page == "add_user_blue" %} 
+                    class="active" 
+                {% endif %}
+                href="/add_user_interface">Add User</a>
+        {% endif %}  
+        </li>    
+        <!-- <li>
+        {% if session.access_level == "admin" %}
+            <a  {% if session.current_page == "manage_user" %} 
+                    class="active" 
+                {% endif %}
+                href="/list_user">Manage User</a>
+        {% endif %}  
+        </li> -->
+        <!-- <li>
+        {% if session.access_level == "user" 
+            or session.access_level == "admin" %}
+            <a {% if session.current_page == "manage_file" %}   
+                    class="active"       
+                {% endif %}
+                href="/manage_file">Manage File</a>  
+        {% endif %} 
+        </li>     -->
+        <!-- <li>
+            <a {% if session.current_page == "extension_page_video" %}   
+                    class="active"       
+                {% endif %}
+                href="/extension_page_video">Translate Page-Video</a>  
+        </li> -->
+        <li>
+            <a {% if session.current_page == "short_cut_page" %}   
+                    class="active"       
+                {% endif %}
+                href="/short_cut_interface">Shortcut</a>  
+        </li>
+        <li>
+            <a {% if session.current_page == "About" %}   
+                    class="active"       
+                {% endif %}
+                href="/about_interface">About</a>  
+        </li>
+    </ul>
+</div>

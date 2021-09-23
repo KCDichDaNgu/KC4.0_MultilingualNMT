@@ -1,0 +1,63 @@
+  #tBody_manage_file  {
+    table-layout: fixed; 
+    width: 100%;     
+  }
+
+  #tHead_manage_file  {  
+    width: 100%;     
+  }
+
+  #tHeadContainer_manage_file {      
+    font-weight: bold; 
+  }
+   
+  #tHeadContainer_manage_file td:first-child {
+    width: 9.8%
+  }
+
+  #tHeadContainer_manage_file td:first-child+td {
+    width: 42%
+  }
+
+  #tHeadContainer_manage_file td:first-child+td+td {
+    width: 14.2%
+  }
+
+  #tHeadContainer_manage_file td:first-child+td+td+td {
+    width: 14.2%
+  }
+
+  #tHeadContainer_manage_file td:first-child+td+td+td+td {
+    width: 20%
+  }
+
+  #tBodyContainer_manage_file {
+    height: 290px;     
+    overflow-y: scroll;
+    margin-left: 15px;    
+  }
+
+  .touchScreen #tBody_manage_file  {
+    -webkit-overflow-scrolling: touch;  
+  }
+
+  #tBodyContainer_manage_file th:first-child {
+    width: 9.7%;
+  }
+
+  #tBodyContainer_manage_file th:first-child+th {
+    width: 41.3%;
+  }
+
+  #tBodyContainer_manage_file th:first-child+th+th {
+    width: 14%;
+  }
+
+  #tBodyContainer_manage_file th:first-child+th+th+th {
+    width: 14%;
+  }
+
+  #tBodyContainer_manage_file th:first-child+th+th+th+th {
+    width: 19.5%;
+  }
+  

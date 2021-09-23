@@ -1,0 +1,98 @@
+server:
+  host: "0.0.0.0"
+  port: 6010
+  debug: True
+
+initial:
+  image_folder: "static/images/"
+  japanese_font: "fonts/IPAfont00303/ipag.ttf"
+
+envi_service_translation:
+  protocol: "REST"
+  server:
+    #host: "nmtuet.ddnsfree.com"
+    host: "0.0.0.0"
+    port: 6019
+  model:
+    model_name: "envi"
+    source_language: "en"
+    target_language: "vi"
+    time_out: 600
+    batch_serving: 8
+    file_translation:
+      m4loc: "m4loc-master/"
+      okapi: "okapi/"
+    aligner:
+      priors: "priors_file/train.clean_uniform.envi.priors"
+
+    #vien_service_translation:
+    #  server:
+    #    #host: "nmtuet.ddnsfree.com"
+    #    host: "0.0.0.0"
+    #    port: 6011
+    #  model:
+    #    model_name: "vien"
+    #    source_language: "vi"
+    #    target_language: "en"
+    #    time_out: 600
+    #    batch_serving: 128
+    #  file_translation:
+    #    m4loc: "m4loc-master/"
+    #    okapi: "okapi/"    
+    #  aligner:
+    #    priors: "priors_file/train.clean_uniform.vien.priors"
+    #
+    #javi_service_translation:
+    #  server:
+    #    #host: "nmtuet.ddnsfree.com"
+    #    host: "0.0.0.0"
+    #    port: 6006
+    #  model:
+    #    model_name: "javi"
+    #    source_language: "ja"
+    #    target_language: "vi"
+    #    time_out: 600
+    #    batch_serving: 128
+    #  file_translation:
+    #    m4loc: "m4loc-master/"
+    #    okapi: "okapi/"
+    #  aligner:
+    #    priors: "priors_file/oct22.javi.priors"
+    #
+    #vija_service_translation:
+    #  server:
+    #    #host: "nmtuet.ddnsfree.com"
+    #    host: "0.0.0.0"
+    #    port: 6010
+    #  model:
+    #    model_name: "vija"
+    #    source_language: "vi"
+    #    target_language: "ja"
+    #    time_out: 600
+    #    batch_serving: 128
+    #  file_translation:
+    #    m4loc: "m4loc-master/"
+    #    okapi: "okapi/"    
+    #  aligner:
+    #    priors: "priors_file/oct22.vija.priors"
+    #
+    #zhvi_service_translation:
+    #  server:
+    #    host: "0.0.0.0"
+    #    port: 6010
+    #  model:
+    #    model_name: "zhvi"
+    #    source_language: "zh"
+    #    target_language: "vi"
+
+flask_mail:
+  DEBUG: True
+  MAIL_SERVER: "smtp.gmail.com"
+  MAIL_PORT: 465
+  MAIL_USE_SSL: True
+  MAIL_USERNAME: 'moduledk@gmail.com'
+  MAIL_PASSWORD: 'igvphxhurzwmsjpm'
+
+translate_file:
+  max_permit_word: 5000
+

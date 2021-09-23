@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="translate_m4loc">
+
+<head>
+  <title>UET-NMT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">     
+  <link rel="stylesheet" type="text/css" href="./static/css/navigation.css">      
+  <link rel="stylesheet" type="text/css" href="./static/css/loader_bar.css"> 
+  <link rel="stylesheet" type="text/css" href="./static/css/header.css">  
+  <script src="./static/js/libs/jquery-3.3.1.min.js"></script> 
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'navigation.html' %}
+  <br>            
+    <div style="margin-left: 15px; margin-top: -7px; font-size: 20px;">
+      <a style="text-decoration:none;" href="/list_file">Manage File</a> 
+    </div>    
+    <hr style="margin-top: 13px" >                             
+
+    <div class="container">             
+      <div id="loader_bar_background">
+        <div id="loader_bar" class="w3-round-large">
+          <!-- 40% is max for percentage_loader_bar -->
+          <div id="percentage_loader_bar" style="width: 0%; background:rgb(102, 102, 255)">
+          <!-- 100% is max for percentage_value -->
+          <p id="percentage_value" old_interval="500" old_estimate_time="0">0%</p>
+          </div>
+        </div>      
+        <button id="btn_abort" class="btn btn-success">Abort</button>  
+      </div>        
+
+      <!-- notice -->
+      <div id="myAlert" style="display:none;">        
+        <span id="closeAlertBtn">&times;</span>                         
+        <span id="notice_content"></span>
+      </div>
+  
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">                
+            <p id="myModalMessage"></p>
+        </div>
+      </div> 
+    </div>
+    
+    <div style="margin-top: 13px" class="container">   
+        <div class="row" style="border: 3px solid #91a8f8;
+          padding: 16px; border-radius: 10px;">
+            <div class="col-md-5">
+              <div class="form-group" 
+                style="display: flex;justify-content: center; margin-left: 0px;">          
+                  <label for="src">Source language</label>
+                  <select id="source_lang" style="margin-left: 3px;">
+                    <option value="ja" selected>Japanese</option>
+                    <option value="vi">Vietnamese</option> 
+                    <!-- <option value="en">English</option>                                                    -->
+                  </select>                                                          
+              </div>        
+            </div> 
+            <div class="col-md-2">    
+              <span class="imgWrap" 
+              style="width:30px; height:30px; 
+                padding-top: 3px; margin:auto; display: block;">
+                <img src="../static/images/switch_lang.png"            
+                style="margin:auto; display: block;"
+                id="switch_lang"/>  
+              </span>
+            </div>
+            <div class="col-md-5">        
+              <div class="form-group" 
+                style="display: flex;
+                justify-content: center;
+                margin-right: 0px;">          
+                  <label for="tgt">Target language</label>
+                  <select id="target_lang" style="margin-left: 3px;">
+                    <option value="vi" selected>Vietnamese</option>
+                    <option value="ja">Japanese</option>  
+                    <!-- <option value="en">English</option>                                                   -->
+                  </select>                
+              </div>
+            </div> 
+        </div>         
+          <div style="margin-top: 40px; position: relative;">          
+            <form id="form_transfile" method="POST" 
+              enctype="multipart/form-data" action="/translate_doc_m4loc">                  
+              <div class="field" style="margin-top: 30px; position: absolute; 
+                float: left; top: 50%; left:50%; transform: translate(-50%, -50%);">                 
+                  <!-- <button style="color: rgb(255, 92, 32); border: 2px solid rgb(161, 178, 255);" class="btn" 
+                    onclick="document.getElementById('file').click()">Select file (.docx, .pptx, .xlsx)</button> -->
+                  <!-- <input type="file" style="display: none" id="file" name="file"  
+                    accept=".docx,.pptx,.xlsx" required>                                           -->
+                    <lable style="color: rgb(255, 92, 32);">Select file (.docx, .pptx, .xlsx)</lable>
+                    <input type="file" id="file" name="file" value="username" 
+                      accept=".docx,.pptx,.xlsx" onchange="isValid(false)" required>
+              </div>  
+              <div class="field" style="margin-top:150px; 
+                position: absolute; float: left;
+                top: 39%; left:23%; transform: translate(-50%, -50%);">
+                <button type="submit" 
+                class="btn btn-primary btn-lg" id="upload_file" 
+                style="width: 210px; font-size: 17px;">Translate</button>
+              </div>                           
+            </form>  
+            <div style="margin-top:150px; position: absolute; float: left; 
+              top: 39%; left:77%; transform: translate(-50%, -50%);">
+              <a target="_blank" role="button" 
+              class="btn btn-primary btn-lg" id="download_file"
+              style="width: 210px; font-size: 17px;" 
+              disabled="true">Download</a>
+            </div>                                                   
+          </div>      
+    </div>    
+  <!-- <script src="./static/js/libs/FileSaver.js"></script>   -->    
+  <script src="./static/js/translate_file.js"></script>
+  <script src="./static/js/logout.js"></script> 
+  <script src="./static/js/utils.js"></script>  
+</body>
+
+</html>

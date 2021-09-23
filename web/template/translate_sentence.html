@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>UET-NMT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/loader.css">    
+  <link rel="stylesheet" type="text/css" href="./static/css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/header.css">
+  <script src="./static/js/libs/jquery-3.3.1.min.js"></script>     
+</head>
+
+<body>    
+  {% include 'header.html' %}
+  {% include 'navigation.html' %}          
+  <br>
+  <div class="container">    
+    <div id="loader">
+      <div class="loading-icon"></div>
+    </div>                  
+    
+    <!-- notice -->
+    <div id="myAlert" style="display:none;">       
+      <span id="closeAlertBtn">&times;</span>                          
+      <span id="notice_content"></span>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">                
+          <p id="myModalMessage"></p>
+      </div>
+    </div>   
+
+    <div class="content" style="margin-top: 30px; position: relative;">
+      <!-- <div class="row">
+        <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" id="attention_folder" placeholder="Attention image folder" style="display: none;">
+        </div>
+        </div>
+      </div> -->
+      <!-- <div class="row">
+        <button type="button" class="btn btn-success center-block" id="direction" value="envi" onClick="changeDirection()">English - Vietnamese</button>
+      </div> -->      
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group" 
+            style="display: flex;
+            justify-content: center;">          
+              <label for="src">Source language</label>
+              <select id="source_lang" style="margin-left: 3px;">
+                <!-- <option value="en" selected>English</option> -->
+                <option value="ja" selected>Japanese</option> 
+                <option value="vi">Vietnamese</option>                          
+              </select>                                                          
+          </div>        
+        </div> 
+        <div class="col-md-2">    
+          <span class="imgWrap" 
+          style="width:30px; height:30px; 
+            padding-top: 3px;
+            margin:auto; display: block;">
+            <img src="../static/images/switch_lang.png"            
+            style="margin:auto; display: block;"
+            id="switch_lang"/>  
+          </span>
+        </div>
+        <div class="col-md-5">        
+          <div class="form-group" 
+            style="display: flex; 
+            justify-content: center;
+            margin-right: 70px">          
+              <label for="tgt">Target language</label>
+              <select id="target_lang" style="margin-left: 3px;">
+                <!-- <option value="en">English</option> -->
+                <option value="vi" selected>Vietnamese</option>
+                <option value="ja">Japanese</option>            
+              </select>                
+          </div>
+        </div>
+      </div> 
+      <!-- no need to extend textrea when editing -->
+      <div class="row">
+        <div class="textarea-container">
+          <div class="col-md-6">        
+            <button type="button" class="close" 
+                    id="btn_clear_input">&times;</button>
+            <textarea oninput="oninput_text_func()"
+                      oncut="oncut_textare_func()" 
+                      onpaste="onpaste_textare_func()"
+                      class="form-control"     
+                      style="color: black;"                                 
+                      rows="7" id="text_source"></textarea>          
+          </div>
+          <div class="col-md-6">
+            <textarea oninput="oninput_text_func()"
+                    oncut="oncut_textare_func()" 
+                    onpaste="onpaste_textare_func()"
+                    readonly class="form-control"
+                    rows="7" id="text_target"></textarea>
+          </div>
+        </div>
+      </div>   
+      <div class="row">
+        <div style="margin-top: 80px; position: absolute; float: left; 
+          top: 75%; left:50%; transform: translate(-50%, -50%);">
+          <button style="width: 250px;" id="btn_translate" 
+          class="btn btn-primary btn-lg" 
+          onClick="translateFunction()">Translate</button>
+        </div>
+      </div>   
+      <br>
+      <div class="row">
+        <div class="col-md-12 center-block">
+          <image src="" id="attention" class="center-block">
+        </div>
+      </div>
+    </div>  
+  </div> 
+
+  <!-- <script src="./static/js/libs/FileSaver.js"></script> -->  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./static/js/translate_sentence.js"></script>
+  <script src="./static/js/logout.js"></script>
+  <script src="./static/js/utils.js"></script>
+</body>
+
+</html>

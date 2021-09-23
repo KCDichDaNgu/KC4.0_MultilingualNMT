@@ -1,0 +1,34 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;   
+  overflow: hidden;
+  background-color: rgb(47, 71, 141);       
+  color:  rgb(229, 234, 241);
+}
+
+.topnav li a {
+  float: left;
+  color: rgb(229, 234, 241); 
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav li a:hover {
+  color: rgb(122, 202, 255);
+}
+
+.topnav li a.active {   
+  color: rgb(122, 202, 255);
+}
+
+#log_out:hover {
+  color: rgb(122, 202, 255);
+}
+ 
+li {
+  float: left;
+  border-right:0px solid rgb(255, 255, 255);
+}

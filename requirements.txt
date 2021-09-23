@@ -1,0 +1,6 @@
+torch
+nltk
+torchtext==0.6.0
+pyvi
+spacy
+

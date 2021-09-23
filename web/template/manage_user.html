@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="translate_m4loc">
+
+<head>
+  <title>UET-NMT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">     
+  <link rel="stylesheet" type="text/css" href="./static/css/navigation.css">      
+  <link rel="stylesheet" type="text/css" href="./static/css/loader_bar.css"> 
+  <link rel="stylesheet" type="text/css" href="./static/css/header.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/manage_user.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/project_index.css">
+  <script src="./static/js/libs/jquery-3.3.1.min.js"></script>   
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'navigation.html' %}
+  <br>  
+  <div class="container">
+    <!-- notice -->
+    <div id="myAlert" style="display:none;">        
+        <span id="closeAlertBtn">&times;</span>                         
+        <span id="notice_content"></span>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">                
+            <p id="myModalMessage"></p>
+        </div>
+    </div>    
+        
+    <div class="row" style="margin-top: -10px;">
+        <ul style="background: #ffffff; color:rgb(112, 149, 252); font-size: 17px;">
+            {% if list_user|length == 1 %}
+            <li>There is {{list_user|length}} user</li>
+            {% else %}
+            <li>There are {{list_user|length}} users</li>
+            {% endif %}
+        </ul>
+        <hr>
+    </div>    
+    <div class="row">
+        <div id="scrollTableContainer_manage_user" class="projects">
+            <div id="tHeadContainer_manage_user">
+                <table id="tHead_manage_user" class="responstable">
+                    <tr style="background-color: #167F92;
+                        color: #FFF; font-weight: bold;">
+                        <td>Username</td>
+                        <td>Email</td>
+                        <td>Role</td>
+                    </tr>
+                </table>
+            </div>        
+            <div id="tBodyContainer_manage_user">
+                <table id="tBody_manage_user" class="responstable">
+                    {% for username, email, role in list_user %}
+                    <tr style="word-wrap: break-word">
+                        <th>
+                            <div class="article">
+                                {{username}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="article">
+                                {{email}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="article">
+                                {{role}}
+                            </div>
+                        </th>                 
+                    </tr>     
+                    {% endfor %}
+                </table>
+            </div>        
+        </div> 
+    </div>     
+  <!-- <script src="./static/js/libs/FileSaver.js"></script>   -->    
+  <script src="./static/js/manage_user.js"></script>
+  <script src="./static/js/logout.js"></script> 
+  <script src="./static/js/utils.js"></script>  
+</body>
+
+</html>

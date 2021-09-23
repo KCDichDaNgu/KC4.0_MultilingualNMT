@@ -1,0 +1,49 @@
+  #tBody_manage_user  {  
+    table-layout: fixed; 
+    width: 100%; 
+  }
+
+  #tHead_manage_user  {  
+    width: 100%;     
+  }
+
+  #tHeadContainer_manage_user {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  #tHeadContainer_manage_user td:first-child {
+    width: 42%;
+  }
+
+  #tHeadContainer_manage_user td:first-child+td {
+    width: 42%;
+  }
+
+  #tHeadContainer_manage_user td:first-child+td+td {
+    width: 16%;
+  }
+
+  #tBodyContainer_manage_user {             
+    height: 290px;      
+    overflow-y: scroll;
+    margin-left: 15px;    
+  }
+
+  .touchScreen #tBody_manage_user  {
+    -webkit-overflow-scrolling: touch;  
+  }
+  
+  #tBodyContainer_manage_user th:first-child {
+    width: 42%;
+  }
+
+  #tBodyContainer_manage_user th:first-child+th {
+    width: 42%;
+  }
+
+  #tBodyContainer_manage_user th:first-child+th+th {
+    width: 16%;
+  }
+  
+  

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="translate_m4loc">
+
+<head>
+  <title>UET-NMT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">     
+  <link rel="stylesheet" type="text/css" href="./static/css/navigation.css">      
+  <link rel="stylesheet" type="text/css" href="./static/css/loader_bar.css"> 
+  <link rel="stylesheet" type="text/css" href="./static/css/header.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/manage_file.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/project_index.css">
+  <script src="./static/js/libs/jquery-3.3.1.min.js"></script> 
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'navigation.html' %}
+  <br>    
+    <!-- notice -->
+    <div id="myAlert" style="display:none;">        
+        <span id="closeAlertBtn">&times;</span>                         
+        <span id="notice_content"></span>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">                
+            <p id="myModalMessage"></p>
+        </div>
+    </div>  
+  
+   <div id="scrollTableContainer_manage_file" class="projects">
+    <div id="tHeadContainer_manage_file">
+        <table id="tHead_manage_file" class="responstable">
+            <tr style="background-color: #167F92; 
+                color: #FFF; font-weight: bold;">
+                <td>No</td>
+                <td>Name File</td>
+                <td>Source File</td>
+                <td>Target File</td>
+                <td>Time</td>
+            </tr>
+        </table>
+    </div>    
+    <div id="tBodyContainer_manage_file">
+        <table id="tBody_manage_file" class="responstable">
+            {% if list_file|length > 0 %}
+                {% for id, name_file, url_src, url_tgt, time in list_file %}
+                <tr style="word-wrap: break-word">
+                    <th>
+                        <div class="article">
+                            {{id}}
+                        </div>
+                    </th>
+                    <th>
+                        <div class="article">
+                            {{name_file}}
+                        </div>
+                    </th>
+                    <th>
+                        <a class="article" href="{{url_src}}" target="_blank">
+                            download
+                        </a>
+                    </th>
+                    <th>
+                        <a class="article" href="{{url_tgt}}" target="_blank">
+                            download
+                        </a>
+                    </th> 
+                    <th>
+                        <div class="article">
+                            {{time}}
+                        </div>
+                    </th>                 
+                </tr>    
+                {% endfor %}
+            {% else %}
+                <p style="margin-top: 50px; font-size: 20px;
+                          color:rgb(112, 149, 252); 
+                          text-align:center;">There are no files</p>
+            {% endif %} 
+        </table>
+    </div>   
+   </div>
+  <!-- <script src="./static/js/libs/FileSaver.js"></script>   -->    
+  <script src="./static/js/manage_file.js"></script>
+  <script src="./static/js/logout.js"></script> 
+  <script src="./static/js/utils.js"></script>     
+</body>
+
+</html>

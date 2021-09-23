@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="translate_m4loc">
+
+<head>
+  <title>UET-NMT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">     
+  <link rel="stylesheet" type="text/css" href="./static/css/navigation.css">      
+  <link rel="stylesheet" type="text/css" href="./static/css/loader_bar.css"> 
+  <link rel="stylesheet" type="text/css" href="./static/css/header.css">
+  <script src="./static/js/libs/jquery-3.3.1.min.js"></script>  
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'navigation.html' %}
+  <br>  
+  <div class="container">
+    <!-- notice -->
+    <div id="myAlert" style="display:none;">        
+        <span id="closeAlertBtn">&times;</span>                         
+        <span id="notice_content"></span>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">                
+            <p id="myModalMessage"></p>
+        </div>
+    </div>    
+    
+    <div style="margin: 0 auto; display: block;">
+        <h2>Click chuột vào đường dẫn sau đây để cài đặt ứng dụng 
+            dịch trang của chúng tôi chỉ trong vòng vài giây</h2>
+        <!--add the correct link of extension here-->
+        <a href="/">Get extension translating pages and videos</a>
+    </div>    
+  </div>
+  <!-- <script src="./static/js/libs/FileSaver.js"></script>   -->    
+  <script src="./static/js/extension_page_video.js"></script>
+  <script src="./static/js/logout.js"></script> 
+  <script src="./static/js/utils.js"></script>  
+</body>
+
+</html>

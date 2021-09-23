@@ -1,0 +1,80 @@
+
+.projects .responstable {
+  font-size: 15.5px;     
+  padding: 40px;
+  max-width: 800px;   
+  background: #FFF;
+  color: #024457;
+  margin: 0 auto;
+  /* display: block;  */
+  /* margin-left: 150px;      */
+}
+
+.projects .responstable tr {
+  border: 1px solid #D9E4E6;  
+  background-color: rgb(247, 255, 255);
+}
+
+.projects .responstable tr:nth-child(odd) {
+  background-color: rgb(225, 247, 247);
+}
+.projects .responstable th {
+  display: none;
+  border: 1px solid #FFF;
+  /*background-color: #167F92;*/
+  /*color: #FFF;*/
+  padding: 1em;
+}
+.projects .responstable th:first-child {
+  display: table-cell;
+  text-align: center;
+}
+.projects .responstable th:nth-child(2) {
+  display: table-cell;
+}
+.projects .responstable th:nth-child(2) span {
+  display: none;
+}
+.projects .responstable th:nth-child(2):after {
+  content: attr(data-th);
+}
+@media (min-width: 480px) {
+  .projects .responstable th:nth-child(2) span {
+    display: block;
+  }
+  .projects .responstable th:nth-child(2):after {
+    display: none;
+  }
+}
+.projects .responstable td {
+  position: sticky;
+  display: block;
+  word-wrap: break-word;
+  max-width: 7em;
+}
+
+.projects .responstable tr:hover {
+  background-color: #c1ecef;
+  /*color: white;*/
+}
+
+.projects .responstable td:first-child {
+  display: table-cell;
+  text-align: center;
+  border-right: 1px solid #D9E4E6;
+}
+@media (min-width: 480px) {
+  .projects .responstable td {
+    border: 1px solid #D9E4E6;
+  }
+}
+.projects .responstable th, .projects .responstable td {
+  text-align: left;
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .projects .responstable th, .projects .responstable td {
+    display: table-cell;
+    padding: 1em;
+  }
+}

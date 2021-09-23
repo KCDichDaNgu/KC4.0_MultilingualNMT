@@ -1,0 +1,46 @@
+# data location and config section
+data:
+  train_data_location: ../data/iwslt/train
+  eval_data_location:  ../data/iwslt/tst2013
+  src_lang: .en 
+  trg_lang: .vi 
+log_file_models: 'model.log'
+lowercase: false
+build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.Vocab for mode details
+#  max_size: 50000
+  min_freq: 5
+# model parameters section
+device: cuda
+d_model: 512
+n_layers: 6
+heads: 8
+# inference section
+eval_batch_size: 8
+decode_strategy: BeamSearch
+decode_strategy_kwargs:
+  beam_size: 5 # beam search size
+  length_normalize: 0.6 # recalculate beam position by length. Currently only work in default BeamSearch
+  replace_unk: # tuple of layer/head attention to replace unknown words
+    - 0 # layer
+    - 0 # head
+input_max_length: 200 # input longer than this value will be trimmed in inference. Note that this values are to be used during cached PE, hence, validation set with more than this much tokens will call a warning for the trimming.
+max_length: 160 # only perform up to this much timestep during inference
+train_max_length: 50 # training samples with this much length in src/trg will be discarded
+# optimizer and learning arguments section
+lr: 0.2
+optimizer: AdaBelief
+optimizer_params:
+  betas:
+    - 0.9 # beta1
+    - 0.98 # beta2
+  eps: !!float 1e-9
+n_warmup_steps: 4000
+label_smoothing: 0.1
+dropout: 0.1
+# training config, evaluation, save & load section
+batch_size: 64
+epochs: 40
+printevery: 200
+save_checkpoint_epochs: 1
+maximum_saved_model_eval: 5
+maximum_saved_model_train: 5
