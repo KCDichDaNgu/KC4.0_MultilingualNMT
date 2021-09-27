@@ -1,7 +1,7 @@
 # data location and config section
 data:
-  train_data_location: ../data/iwslt/train
-  eval_data_location:  ../data/iwslt/tst2013
+  train_data_location: data/iwslt_en_vi/train
+  eval_data_location:  data/iwslt_en_vi/tst2013
   src_lang: .en 
   trg_lang: .vi 
 log_file_models: 'model.log'
@@ -39,7 +39,7 @@ label_smoothing: 0.1
 dropout: 0.1
 # training config, evaluation, save & load section
 batch_size: 64
-epochs: 40
+epochs: 20
 printevery: 200
 save_checkpoint_epochs: 1
 maximum_saved_model_eval: 5

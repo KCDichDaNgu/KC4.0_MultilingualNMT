@@ -1,16 +1,12 @@
 # data section
 data:
   train:
-    vi_en:
-      path: ../data/iwslt_en_vi/train
-      src_lang: vi
-      trg_lang: en
     en_vi:
-      path: ../data/iwslt_en_vi/train
+      path: data/iwslt_en_vi/train
       src_lang: en
       trg_lang: vi
   valid:
-    path: ../data/iwslt_en_vi/tst2013
+    path: data/iwslt_en_vi/tst2013
     src_lang: en
     trg_lang: vi
   
@@ -52,4 +48,3 @@ printevery: 200
 save_checkpoint_epochs: 1
 maximum_saved_model_eval: 5
 maximum_saved_model_train: 5
-debug: true
