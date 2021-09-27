@@ -3,4 +3,6 @@ nltk
 torchtext==0.6.0
 pyvi
 spacy
-
+PyYAML
+dill
+pandas
