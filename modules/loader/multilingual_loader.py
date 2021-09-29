@@ -78,7 +78,8 @@ class MultiLoader(DefaultLoader):
         self._valid_info = valid
         self._language_tuple = ('.src', '.trg')
         self._option = option
-
+        
+    @property
     def language_tuple(self):
         """Currently output valid data's tuple for bleu_valid_iter, which would use <{trg_lang}> during inference. Since <{src_lang}> had already been added to the valid data, return None instead."""
         return None, self._valid_info["trg_lang"]
