@@ -207,7 +207,7 @@ class Transformer(nn.Module):
         
         return translated_tokens
 
-    def translate_batch_sentence(self, sentences, trg_lang=None, output_tokens=False, batch_size=None):
+    def translate_batch_sentence(self, sentences, src_lang=None, trg_lang=None, output_tokens=False, batch_size=None):
         """Translate sentences by splitting them to batches and process them simultaneously
         Args:
             sentences: the sentences in a list. Must NOT have been tokenized (due to SRC preprocess)
@@ -340,7 +340,7 @@ class Transformer(nn.Module):
                 # print('epoch: {:03d} - iter: {:05d} - valid loss: {:.4f} - validation time: {:.4f}'.format(epoch, i, valid_loss, time.time() - s))
                 logging.info('epoch: {:03d} - iter: {:05d} - valid loss: {:.4f} - validation time: {:.4f}'.format(epoch, i, valid_loss, time.time() - s))
 
-    def run_infer(self, features_file, predictions_file, trg_lang=None, config=None, batch_size=None):
+    def run_infer(self, features_file, predictions_file, src_lang=None, trg_lang=None, config=None, batch_size=None):
         opt = self.config
         # load model into specific device (GPU/CPU) memory   
         model = self.to(opt.get('device', const.DEFAULT_DEVICE))
