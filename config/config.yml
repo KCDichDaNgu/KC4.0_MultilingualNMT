@@ -9,7 +9,7 @@ data:
     path: data/iwslt_en_vi/tst2013
     src_lang: en
     trg_lang: vi
-  
+log_file_models: 'model.log'   
 lowercase: false
 build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.Vocab for mode details
 #  max_size: 50000
