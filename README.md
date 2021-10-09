@@ -20,7 +20,7 @@ pip install -r requirements.txt
 Ví dụ thực nghiệm dựa trên cặp dữ liệu Anh-Việt nguồn từ iwlst với 133k cặp câu:
 
 ```bash
-cd data/en-vi
+cd data/iwslt_en_vi
 ```
 
 Dữ liệu bao gồm câu nguồn (`src`) và câu đích (`tgt`) dữ liệu đã được tách từ:
@@ -45,10 +45,12 @@ Lưu ý:
 Tách dữ liệu dev để tính toán hội tụ trong quá trình huấn luyện, thường không lớn hơn 5k câu.
 
 ```text
-$ head -n 3 data/iwlst_en_vi/train.en
-It is not acceptable that , with the help of the national bureaucracies , Parliament &apos;s legislative prerogative should be made null and void by means of implementing provisions whose content , purpose and extent are not laid down in advance .
-Federal Master Trainer and Senior Instructor of the Italian Federation of Aerobic Fitness , Group Fitness , Postural Gym , Stretching and Pilates; from 2004 , he has been collaborating with Antiche Terme as personal Trainer and Instructor of Stretching , Pilates and Postural Gym .
-&quot; Two soldiers came up to me and told me that if I refuse to sleep with them , they will kill me . They beat me and ripped my clothes .
+$ head -n 5 data/iwlst_en_vi/train.en
+Rachel Pike : The science behind a climate headline
+In 4 minutes , atmospheric chemist Rachel Pike provides a glimpse of the massive scientific effort behind the bold headlines on climate change , with her team -- one of thousands who contributed -- taking a risky flight over the rainforest in pursuit of data on a key molecule .
+I &apos;d like to talk to you today about the scale of the scientific effort that goes into making the headlines you see in the paper .
+Headlines that look like this when they have to do with climate change , and headlines that look like this when they have to do with air quality or smog .
+They are both two branches of the same field of atmospheric science .
 ```
 
 ## Bước 2: Huấn luyện mô hình
