@@ -137,4 +137,4 @@ perl thrid-party/multi-bleu.perl $your_data_path/translate.en2vi.vi < $your_data
 
 |        MODEL       | BLEU (Beam Search) |
 | :-----------------:| :----------------: |
-| Transformer (Base) |        28.54       |
+| Transformer (Base) |        25.64       |
