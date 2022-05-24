@@ -7,8 +7,8 @@ Dự án MultilingualMT-UET-KC4.0 là dự án open-source được phát triể
 Lưu ý:
 Phiên bản hiện tại chỉ tương thích với python>=3.6
 ```bash
-git clone https://github.com/KCDichDaNgu/MultilingualMT-UET-KC4.0.git
-cd MultilingualMT-UET-KC4.0
+git clone https://github.com/KCDichDaNgu/KC4.0_MultilingualNMT.git
+cd KC4.0_MultilingualNMT
 pip install -r requirements.txt
 
 # Quickstart
@@ -138,3 +138,19 @@ perl thrid-party/multi-bleu.perl $your_data_path/translate.en2vi.vi < $your_data
 |        MODEL       | BLEU (Beam Search) |
 | :-----------------:| :----------------: |
 | Transformer (Base) |        25.64       |
+
+
+## Chi tiết tham khảo tại 
+[nmtuet.ddns.net](http://nmtuet.ddns.net:1190/)
+
+## Nếu có ý kiến đóng góp, xin hãy gửi thư tới địa chỉ mail kcdichdangu@gmail.com
+
+## Xin trích dẫn bài báo sau:
+```bash
+@inproceedings{ViNMT2022,
+  title = {ViNMT: Neural Machine Translation Toolkit},
+  author = {Nguyen Hoang Quan, Nguyen Thanh Dat, Nguyen Hoang Minh Cong, Nguyen Van Vinh, Ngo Thi Vinh, Nguyen Phuong Thai, Tran Hong Viet},
+  booktitle = {https://arxiv.org/abs/2112.15272},
+  year = {2022},
+}
+```
