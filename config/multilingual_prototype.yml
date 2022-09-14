@@ -1,14 +1,40 @@
 # data section
 data:
   train:
-    en_vi:
-      path: data/iwslt_en_vi/train
-      src_lang: en
-      trg_lang: vi
+    zh_vi_ALT:
+      path:  data/ALT/zh-vi/train.bpe
+      src_ext: .zh
+      trg_ext: .vi
+      src_sos: <zh2vi>
+      trg_sos: <sos>
+   
+    lo_vi_ALT:
+      path: data/ALT/lo-vi/train.bpe
+      src_ext: .lo
+      trg_ext: .vi
+      src_sos: <lo2vi>
+      trg_sos: <sos>
+
+    km_vi_ALT:
+      path: data/ALT/km-vi/train.bpe
+      src_ext: .km
+      trg_ext: .vi
+      src_sos: <km2vi>
+      trg_sos: <sos>
+
+    en_vi_iwslt:
+      path: data/ALT/en-vi/train.bpe
+      src_ext: .en
+      trg_ext: .vi
+      src_sos: <en2vi>
+      trg_sos: <sos>
+    
   valid:
-    path: data/iwslt_en_vi/tst2013
-    src_lang: en
-    trg_lang: vi
+    path: data/test/test.bpe
+    src_ext: .zh
+    trg_ext: .vi
+    src_sos: <zh2vi>
+    trg_sos: <sos>
 log_file_models: 'model.log'   
 lowercase: false
 build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.Vocab for mode details
@@ -17,10 +43,13 @@ build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.
 # model parameters section
 device: cuda
 d_model: 512
-n_layers: 6
+d_ff: 2048
+n_encoder_layers: 12
+n_decoder_layers: 6
 heads: 8
+norm: FusedNorm
 # inference section
-eval_batch_size: 32
+eval_batch_size: 8
 decode_strategy: BeamSearch
 decode_strategy_kwargs:
   beam_size: 4 # beam search size
