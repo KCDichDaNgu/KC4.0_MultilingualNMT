@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ## Step 1: Data Preparation
 
-Iwlst's English-Vietnamese parallel corpus contains 133k sentence pairs:
+Iwslt's English-Vietnamese parallel corpus contains 133k sentence pairs:
 
 ```bash
 cd data/iwslt_en_vi
@@ -47,7 +47,7 @@ Note:
 The dev set (tst2012) contains 1553 sentence pairs utilized to compute the coverage of the model.
 
 ```text
-$ head -n 5 data/iwlst_en_vi/train.en
+$ head -n 5 data/iwslt_en_vi/train.en
 Rachel Pike : The science behind a climate headline
 In 4 minutes , atmospheric chemist Rachel Pike provides a glimpse of the massive scientific effort behind the bold headlines on climate change , with her team -- one of thousands who contributed -- taking a risky flight over the rainforest in pursuit of data on a key molecule .
 I &apos;d like to talk to you today about the scale of the scientific effort that goes into making the headlines you see in the paper .

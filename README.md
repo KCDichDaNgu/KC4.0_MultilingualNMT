@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ## Bước 1: Chuẩn bị dữ liệu
 
-Ví dụ thực nghiệm dựa trên cặp dữ liệu Anh-Việt nguồn từ iwlst với 133k cặp câu:
+Ví dụ thực nghiệm dựa trên cặp dữ liệu Anh-Việt nguồn từ iwslt với 133k cặp câu:
 
 ```bash
 cd data/iwslt_en_vi
@@ -45,7 +45,7 @@ Lưu ý:
 Tách dữ liệu dev để tính toán hội tụ trong quá trình huấn luyện, thường không lớn hơn 5k câu.
 
 ```text
-$ head -n 5 data/iwlst_en_vi/train.en
+$ head -n 5 data/iwslt_en_vi/train.en
 Rachel Pike : The science behind a climate headline
 In 4 minutes , atmospheric chemist Rachel Pike provides a glimpse of the massive scientific effort behind the bold headlines on climate change , with her team -- one of thousands who contributed -- taking a risky flight over the rainforest in pursuit of data on a key molecule .
 I &apos;d like to talk to you today about the scale of the scientific effort that goes into making the headlines you see in the paper .
