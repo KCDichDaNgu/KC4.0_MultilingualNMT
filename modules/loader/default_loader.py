@@ -1,8 +1,44 @@
 import io, os
+"""
+dill extends Python's pickle module for serializing and de-serializing Python objects to the majority of the built-in Python types.
+"""
 import dill as pickle
 import torch
 from torch.utils.data import DataLoader
+"""
+The torchtext.data module provides the following:
+
+  Ability to define a preprocessing pipeline
+  Batching, padding, and numericalizing (including building a vocabulary object)
+  Wrapper for dataset splits (train, validation, test)
+  Loader a custom NLP dataset
+
+BucketIterator:
+
+  Defines an iterator that batches examples of similar lengths together.
+  Minimizes amount of padding needed while producing freshly shuffled batches for each new epoch. See pool for the bucketing procedure used.
+
+Field:
+  Defines a datatype together with instructions for converting to Tensor.
+  Field class models common text processing datatypes that can be represented by tensors. It 
+  holds: 
+  - a Vocab object that defines the set of possible values for elements of the field and 
+  - their corresponding numerical representations. 
+  The Field object also holds other parameters relating to how a datatype should be numericalized, 
+  such as a tokenization method and the kind of Tensor that should be produced.
+  If a Field is shared between two columns in a dataset (e.g., question and answer in a QA dataset), then they will have a shared vocabulary.
+
+"""
 from torchtext.data import BucketIterator, Dataset, Example, Field
+"""
+torchtext.datasets holds some dataset available of pytorch
+
+TranslationDataset: Create a TranslationDataset given paths and fields:
+  path – Common prefix of paths to the data files for both languages.
+  exts – A tuple containing the extension to path for each language.
+  fields – A tuple containing the fields that will be used for data in each language.
+  keyword arguments (Remaining) – Passed to the constructor of data.Dataset.
+"""
 from torchtext.datasets import TranslationDataset, Multi30k, IWSLT, WMT14
 from collections import Counter
 
@@ -23,6 +59,9 @@ class DefaultLoader:
     return None, None
 
   def tokenize(self, sentence):
+    """
+    Simply divide sentence into list of words
+    """
     return sentence.strip().split()
 
   def detokenize(self, list_of_tokens):
@@ -35,16 +74,26 @@ class DefaultLoader:
       return [" ".join(tokens) for tokens in list_of_tokens]
 
   def _train_path_is_name(self):
+    """
+    Check if train file can be found
+    """
     return os.path.isfile(self._train_path + self._language_tuple[0]) and os.path.isfile(self._train_path + self._language_tuple[1])
 
   def create_length_constraint(self, token_limit):
     """Filter an iterator if it pass a token limit"""
     return lambda x: len(x.src) <= token_limit and len(x.trg) <= token_limit
 
+  """
+  Build_field is used regardless of infer, train, or test
+  """
   def build_field(self, **kwargs):
     """Build fields that will handle the conversion from token->idx and vice versa. To be overriden by MultiLoader."""
     return Field(**kwargs), Field(init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS, **kwargs)
 
+  """
+  It's used to map idx->token strings -> string)
+  The main point is set the src_field.vocab and trg_field.vocab
+  """
   def build_vocab(self, fields, model_path=None, data=None, **kwargs):
     """Build the vocabulary object for torchtext Field. There are three flows:
       - if the model path is present, it will first try to load the pickled/dilled vocab object from path. This is accessed on continued training & standalone inference
@@ -67,6 +116,15 @@ class DefaultLoader:
         src_ext, trg_ext = self._language_tuple
         # read the files and create a mock Counter object; which then is passed to vocab's class
         # see Field.build_vocab for the options used with vocab_cls
+        """
+        vocab_cls: Alias of torchtext.vocab.Vocab. It defines a vocabulary object that will be used to numericalize a field.
+
+        Variables:	
+        freqs – A collections.Counter object holding the frequencies of tokens in the data used to build the Vocab.
+        stoi – A collections.defaultdict instance mapping token strings to numerical identifiers.
+        itos – A list of token strings indexed by their numerical identifiers.
+        => Just imagine it as a vocab class with methods
+        """
         vocab_src = external_vocab_location + src_ext
         with io.open(vocab_src, "r", encoding="utf-8") as svf:
           mock_counter = Counter({w.strip():1 for w in svf.readlines()})
@@ -80,10 +138,16 @@ class DefaultLoader:
     else:
       print("Load vocab from path successful.")
 
+  """
+  It's used in train and test step only
+  """
   def create_iterator(self, fields, model_path=None):
     """Create the iterator needed to load batches of data and bind them to existing fields
     NOTE: unlike the previous loader, this one inputs list of tokens instead of a string, which necessitate redefinining of translate_sentence pipe"""
     if(not self._train_path_is_name()):
+      """
+      We don't care it, since our task is Viet-Laos
+      """
       # load the default torchtext dataset by name
       # TODO load additional arguments in the config
       dataset_cls = next( (s for s in [Multi30k, IWSLT, WMT14] if s.__name__ == self._train_path), None )
@@ -93,9 +157,19 @@ class DefaultLoader:
 #      print(ext, fields)
       self._train_data, self._valid_data, self._eval_data = dataset_cls.splits(exts=ext, fields=fields) #, split_ratio=self._option.get("train_test_split", const.DEFAULT_TRAIN_TEST_SPLIT)
     else:
+      """
+      This is where we should pay attention
+      It's from Field classes -> TranslationDataset classes -> (creating vocab classes) -> BucketIterator classes
+      """
       # create dataset from path. Also add all necessary constraints (e.g lengths trimming/excluding)
       src_suffix, trg_suffix = ext = self._language_tuple
+      """
+      filter_fn defines constraint for input vectors
+      """
       filter_fn = self.create_length_constraint(self._option.get("train_max_length", const.DEFAULT_TRAIN_MAX_LENGTH))
+      """
+      View definition of TranslationDataset in the begining of this file
+      """
       self._train_data = TranslationDataset(self._train_path, ext, fields, filter_pred=filter_fn)
       self._valid_data = self._eval_data = TranslationDataset(self._eval_path, ext, fields)
 #    first_sample = self._train_data[0]; raise Exception("{} {}".format(first_sample.src, first_sample.trg))
