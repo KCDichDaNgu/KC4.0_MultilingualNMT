@@ -72,6 +72,13 @@ class Transformer(nn.Module):
         self.out = nn.Linear(d_model, trg_vocab_size)
 
         # load the beamsearch obj with preset values read from config. ALWAYS require the current model, max_length, and device used as per DecodeStrategy base
+        """
+        strategies = {
+        "BeamSearch": BeamSearch,
+        "BeamSearch2": BeamSearch2,
+        "GreedySearch": GreedySearch
+        }
+        """
         decode_strategy_class = strategies[opt.get('decode_strategy', const.DEFAULT_DECODE_STRATEGY)]
         decode_strategy_kwargs = opt.get('decode_strategy_kwargs', const.DEFAULT_STRATEGY_KWARGS)
         self.decode_strategy = decode_strategy_class(self, infer_max_length, self.device, **decode_strategy_kwargs)
@@ -133,16 +140,40 @@ class Transformer(nn.Module):
         opt = self.config
         
         # move data to specific device's memory
+        """
+        The source (src) and target (trg) sequences are transposed, possibly to match the expected input format for the model.
+        After that, data is moved, likely from cpu -> cuda (GPUs)
+        """
         src = batch.src.transpose(0, 1).to(opt.get('device', const.DEFAULT_DEVICE))
         trg = batch.trg.transpose(0, 1).to(opt.get('device', const.DEFAULT_DEVICE))
 
+        """
+        By excluding the last token from the input sequence, you're essentially creating a "teacher forcing" scenario during training. 
+        Teacher forcing involves using the true target sequence as inputs during training, helping the model learn to 
+        generate the correct next tokens.
+        """
         trg_input = trg[:, :-1]
+
+        """
+        Index of token '<pad>' is taken from self.SRC and self.TRG as the Field classes
+        """
         src_pad = self.SRC.vocab.stoi['<pad>']
         trg_pad = self.TRG.vocab.stoi['<pad>']
+
+        """
+        This uses Python slicing to select all rows (:) and all columns starting from the second column (1:) to the end of the sequence.
+        The contiguous() method is used to ensure that the resulting tensor is stored in a contiguous block of memory.
+        This can be necessary when you perform certain operations on the tensor, such as reshaping.
+        The view(-1) method is used to flatten the tensor into a 1-dimensional tensor.
+        """
         ys = trg[:, 1:].contiguous().view(-1)
 
         # create mask and perform network forward
         src_mask, trg_mask = create_masks(src, trg_input, src_pad, trg_pad, opt.get('device', const.DEFAULT_DEVICE))
+
+        """
+        Forward step
+        """
         preds = self(src, trg_input, src_mask, trg_mask)
         
         # perform backprogation

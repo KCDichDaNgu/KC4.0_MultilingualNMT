@@ -12,6 +12,11 @@ class Config(dict):
   def __init__(self, path=None, **elements):
     """Initiate a config object, where specified elements override the default config loaded"""
     super(Config, self).__init__(self._try_load_path(path))
+    """
+    After loading the default configuration, the method updates the configuration with any additional elements passed as keyword arguments
+    (**elements).
+    This allows you to override or add new configuration elements when creating an instance of the Config class.
+    """
     self.update(**elements)
 
   def _load_json(self, json_path):
@@ -33,6 +38,10 @@ class Config(dict):
     else:
       raise ValueError("Unrecognized extension ({:s}) from file {:s}".format(extension, path))
 
+  """
+  In Python, @property is a decorator that allows you to define a method in a class that can be accessed like an attribute, rather than as a method. 
+  It allows you to define a getter method for a class attribute without explicitly calling a method.
+  """
   @property
   def opt(self):
     """Backward compatibility to original. Remove once finished."""
@@ -45,6 +54,9 @@ class MultiplePathConfig(Config):
       print("Loaded path is a list of locations. Load in the order received, overriding and merging as needed.")
       result = {}
       for pth in paths:
+        """
+        In here, super(MultiplePathConfig, self)._try_load_path(pth) is use to call _try_load_path of the parent class (Config class)
+        """
         self._recursive_update(result, super(MultiplePathConfig, self)._try_load_path(pth))
       return result
     else:

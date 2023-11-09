@@ -14,6 +14,9 @@ import layers as layers
 #    def forward(self, x):
 #        return self.embed(x)
 
+"""
+It contains only class of small components inside transformer. Take a look if needed
+"""
 class EncoderLayer(nn.Module):
     def __init__(self, d_model, heads, dropout=0.1):
         """An layer of the encoder. Contain a self-attention accepting padding mask

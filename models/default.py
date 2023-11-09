@@ -1,3 +1,6 @@
+"""
+WTF?
+"""
 class MockModel:
   """A model that only output string to show flow"""
   def __init__(self, *args, **kwargs):

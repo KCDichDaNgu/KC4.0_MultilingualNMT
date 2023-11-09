@@ -3,6 +3,18 @@ import dill as pickle
 from collections import Counter
 
 import torch
+"""
+BucketIterator, Dataset, Field was briefly describe in default_loader.py. Please take a look if needed.
+
+Example is a data structure that represents a single example in your dataset. 
+It typically contains one or more fields, where each field corresponds to a different aspect or feature of your data (e.g., text, label)
+
+interleave_keys: This is a function from torchtext that is used to interleave the keys of multiple examples. 
+When you have multiple examples with different keys (field names), and you want to combine them in a way that interleaves the keys, 
+you can use this function. 
+It's often used when working with tabular data or multiple types of features.
+
+"""
 from torchtext.data import BucketIterator, Dataset, Example, Field, interleave_keys
 import modules.constants as const
 from utils.save import load_vocab_from_path
@@ -49,7 +61,9 @@ class MultiDataset(Dataset):
                         trg_line = ' '.join([generate_language_token(trg_lang), trg_line])
                         examples.append(Example.fromlist([src_line, trg_line], fields))
             print("Done!")
-
+        """
+        The Dataset class will be called after the example list was filled
+        """
         super(MultiDataset, self).__init__(examples, fields, **kwargs)
 
 
@@ -120,6 +134,10 @@ class MultiLoader(DefaultLoader):
         
         # now we can execute build_vocab. This function will try to load vocab from model_path, and if fail, build the vocab from train_data
         build_vocab_kwargs = self._option.get("build_vocab_kwargs", {})
+        """
+        This removes the key "specials" from the build_vocab_kwargs dictionary, and if the key is not present, it returns an empty list ([]). 
+        This ensures that "specials" is present in the dictionary, and its value is either the existing list or a new empty list.
+        """
         build_vocab_kwargs["specials"] = build_vocab_kwargs.pop("specials", []) + list(self._train_data.languages)
         self.build_vocab(fields, data=self._train_data, model_path=model_path, **build_vocab_kwargs)
 

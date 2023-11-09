@@ -3,7 +3,10 @@ Dự án MultilingualMT-UET-KC4.0 là dự án open-source được phát triể
 # Comment files
 Muc tieu la comment moi file ma chung ta can quan tam:
 
-loader/default_loader.py
+model/transformer.py
+modules/loader/*.py
+modules/config.py
+modules/prototypes.py
 
 # Setup
 ## Cài đặt công cụ Multilingual-NMT
