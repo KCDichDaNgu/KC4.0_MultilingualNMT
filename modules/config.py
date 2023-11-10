@@ -55,7 +55,8 @@ class MultiplePathConfig(Config):
       result = {}
       for pth in paths:
         """
-        In here, super(MultiplePathConfig, self)._try_load_path(pth) is use to call _try_load_path of the parent class (Config class)
+        In here, super(MultiplePathConfig, self)._try_load_path(pth) is use to 
+        call _try_load_path of the parent class (Config class)
         """
         self._recursive_update(result, super(MultiplePathConfig, self)._try_load_path(pth))
       return result

@@ -31,6 +31,9 @@ class Tokenizer:
             self.tokenizer_fn = lambda l: l.strip().split()
             
     def tokenize(self, sentence):
+        """
+        Pre-processing part
+        """
         sentence = re.sub(
         r"[\*\"“”\n\\…\+\-\/\=\(\)‘•:\[\]\|’\!;]", " ", str(sentence))
         sentence = re.sub(r"[ ]+", " ", sentence)
