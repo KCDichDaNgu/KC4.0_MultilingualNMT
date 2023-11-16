@@ -3,6 +3,6 @@ nltk
 torchtext==0.6.0
 pyvi
 spacy
-PyYAML==5.4.1
+PyYAML
 dill
 pandas
