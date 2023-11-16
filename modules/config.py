@@ -20,7 +20,7 @@ class Config(dict):
 
   def _load_yaml(self, yaml_path):
     with io.open(yaml_path, "r", encoding="utf-8") as yf:
-      return yaml.load(yf.read())
+      return yaml.safe_load(yf.read())
 
   def _try_load_path(self, path):
     assert isinstance(path, str), "Basic Config class can only support a single file path (str), but instead is {}({})".format(path, type(path))
