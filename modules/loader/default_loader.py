@@ -8,7 +8,9 @@ from collections import Counter
 
 import modules.constants as const
 from utils.save import load_vocab_from_path
-
+import nltk
+nltk.download('punkt')
+from nltk.tokenize import wordpunct_tokenize
 
 
 class DefaultLoader:
@@ -18,16 +20,6 @@ class DefaultLoader:
     self._train_path = train_path_or_name
     self._eval_path = eval_path
     self._option = option
-
-  def word_tokenize(sent: str) -> List[str]:
-    """
-    Lao word tokenize
-
-    :param str sent: lao text
-    :return: returns a list of lao words
-    :rtype: list
-    """
-    return _word.word_tokenize(sent)
   
   @property
   def language_tuple(self):
@@ -35,7 +27,7 @@ class DefaultLoader:
     return None, None
 
   def tokenize(self, sentence):
-    return word_tokenize(sentence)
+    return wordpunct_tokenize(sentence)
 
   def detokenize(self, list_of_tokens):
     """Differentiate between [batch, len] and [len]; joining tokens back to strings"""
