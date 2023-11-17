@@ -8,9 +8,6 @@ from collections import Counter
 
 import modules.constants as const
 from utils.save import load_vocab_from_path
-import nltk
-nltk.download('punkt')
-from nltk.tokenize import wordpunct_tokenize
 
 
 class DefaultLoader:
@@ -27,7 +24,7 @@ class DefaultLoader:
     return None, None
 
   def tokenize(self, sentence):
-    return wordpunct_tokenize(sentence)
+    return sentence.strip().split()
 
   def detokenize(self, list_of_tokens):
     """Differentiate between [batch, len] and [len]; joining tokens back to strings"""
