@@ -15,7 +15,7 @@ d_model: 512
 n_layers: 6
 heads: 8
 # inference section
-eval_batch_size: 8
+eval_batch_size: 16
 decode_strategy: BeamSearch
 decode_strategy_kwargs:
   beam_size: 5 # beam search size
@@ -25,7 +25,7 @@ decode_strategy_kwargs:
     - 0 # head
 input_max_length: 200 # input longer than this value will be trimmed in inference. Note that this values are to be used during cached PE, hence, validation set with more than this much tokens will call a warning for the trimming.
 max_length: 160 # only perform up to this much timestep during inference
-train_max_length: 50 # training samples with this much length in src/trg will be discarded
+train_max_length: 70 # training samples with this much length in src/trg will be discarded
 # optimizer and learning arguments section
 lr: 0.2
 optimizer: AdaBelief
@@ -38,7 +38,7 @@ n_warmup_steps: 4000
 label_smoothing: 0.1
 dropout: 0.1
 # training config, evaluation, save & load section
-batch_size: 64
+batch_size: 128
 epochs: 20
 printevery: 200
 save_checkpoint_epochs: 1

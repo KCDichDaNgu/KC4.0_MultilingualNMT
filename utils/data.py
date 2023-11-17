@@ -30,15 +30,15 @@ class Tokenizer:
         else:
             self.tokenizer_fn = lambda l: l.strip().split()
             
-    def tokenize(self, sentence):
-        sentence = re.sub(
-        r"[\*\"“”\n\\…\+\-\/\=\(\)‘•:\[\]\|’\!;]", " ", str(sentence))
-        sentence = re.sub(r"[ ]+", " ", sentence)
-        sentence = re.sub(r"\!+", "!", sentence)
-        sentence = re.sub(r"\,+", ",", sentence)
-        sentence = re.sub(r"\?+", "?", sentence)
-        sentence = sentence.lower()
-        return [tok.text for tok in self.tokenizer_fn(sentence) if tok.text != " "]
+    # def tokenize(self, sentence):
+    #     sentence = re.sub(
+    #     r"[\*\"“”\n\\…\+\-\/\=\(\)‘•:\[\]\|’\!;]", " ", str(sentence))
+    #     sentence = re.sub(r"[ ]+", " ", sentence)
+    #     sentence = re.sub(r"\!+", "!", sentence)
+    #     sentence = re.sub(r"\,+", ",", sentence)
+    #     sentence = re.sub(r"\?+", "?", sentence)
+    #     sentence = sentence.lower()
+    #     return [tok.text for tok in self.tokenizer_fn(sentence) if tok.text != " "]
 
 
 def read_data(src_file, trg_file):
@@ -63,9 +63,9 @@ def create_fields(src_lang, trg_lang):
     
     #print("loading spacy tokenizers...")
     #
-    t_src = tokenize(src_lang)
-    t_trg = tokenize(trg_lang)
-    # t_src_tokenizer = t_trg_tokenizer = lambda x: x.strip().split()
+    # t_src = tokenize(src_lang)
+    # t_trg = tokenize(trg_lang)
+    t_src_tokenizer = t_trg_tokenizer = lambda x: x.strip().split()
 
     TRG = data.Field(lower=True, tokenize=t_trg_tokenizer, init_token='<sos>', eos_token='<eos>')
     SRC = data.Field(lower=True, tokenize=t_src_tokenizer)
