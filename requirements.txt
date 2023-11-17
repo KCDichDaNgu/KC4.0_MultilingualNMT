@@ -6,3 +6,4 @@ spacy
 PyYAML
 dill
 pandas
+nltk
