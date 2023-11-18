@@ -4,7 +4,8 @@ from nltk.corpus import wordnet
 import dill as pickle
 import pandas as pd
 from torchtext import data
-from laonlp.tokenize import word_tokenize
+from laonlp import tokenize
+from underthesea import word_tokenize
 
 def multiple_replace(dict, text):
   # Create a regular expression  from the dictionary keys
@@ -66,10 +67,10 @@ def create_fields(src_lang, trg_lang):
     #
     # t_src = tokenize(src_lang)
     # t_trg = tokenize(trg_lang)
-    t_src_tokenizer = t_trg_tokenizer = lambda x: x.strip().split()
+    # t_src_tokenizer = t_trg_tokenizer = lambda x: x.strip().split()
 
-    TRG = data.Field(lower=True, tokenize=t_trg_tokenizer, init_token='<sos>', eos_token='<eos>')
-    SRC = data.Field(lower=True, tokenize=word_tokenize)
+    TRG = data.Field(lower=True, tokenize=word_tokenize, init_token='<sos>', eos_token='<eos>')
+    SRC = data.Field(lower=True, tokenize=tokenize.word_tokenize)
         
     return SRC, TRG
 
