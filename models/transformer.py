@@ -37,7 +37,7 @@ class Transformer(nn.Module):
             self.loader = DefaultLoader(data_opt['train_data_location'], eval_path=data_opt.get('eval_data_location', None), language_tuple=(data_opt["src_lang"], data_opt["trg_lang"]), option=opt)
         elif('data' in opt):
             # multilingual data with multiple corpus in [data][train] namespace
-            self.loader = DefaultLoader(opt["data"]["train"], valid=opt["data"].get("valid", None), option=opt)
+            self.loader = MultiLoader(opt["data"]["train"], valid=opt["data"].get("valid", None), option=opt)
         # input fields
         self.SRC, self.TRG = self.loader.build_field(lower=opt.get("lowercase", const.DEFAULT_LOWERCASE))
 #        self.SRC = data.Field(lower=opt.get("lowercase", const.DEFAULT_LOWERCASE))
