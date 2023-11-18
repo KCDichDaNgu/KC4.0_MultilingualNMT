@@ -8,7 +8,8 @@ from collections import Counter
 
 import modules.constants as const
 from utils.save import load_vocab_from_path
-
+from laonlp import tokenize
+from underthesea import word_tokenize
 
 class DefaultLoader:
   def __init__(self, train_path_or_name, language_tuple=None, valid_path=None, eval_path=None, option=None):
@@ -44,7 +45,7 @@ class DefaultLoader:
 
   def build_field(self, **kwargs):
     """Build fields that will handle the conversion from token->idx and vice versa. To be overriden by MultiLoader."""
-    return Field(**kwargs), Field(init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS, **kwargs)
+    return Field(lower=True, tokenize=tokenize.word_tokenize), Field(lower=True, tokenize=word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
 
   def build_vocab(self, fields, model_path=None, data=None, **kwargs):
     """Build the vocabulary object for torchtext Field. There are three flows:
