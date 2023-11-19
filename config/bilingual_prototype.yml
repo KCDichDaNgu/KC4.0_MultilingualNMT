@@ -9,6 +9,15 @@ lowercase: false
 build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.Vocab for mode details
 #  max_size: 50000
   min_freq: 5
+  specials:
+    - <unk>
+    - <pad>
+    - <sos>
+    - <eos>
+  tokenizer: # tokenizer for src and trg. See torchtext.data.utils.get_tokenizer for more details
+    src: laonlp.tokenize.word_tokenize
+    trg: sunderthesea.word_tokenize
+  # data augmentation section
 # model parameters section
 device: cuda
 d_model: 512

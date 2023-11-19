@@ -57,7 +57,4 @@ def bleu_batch_iter(model, valid_iter, src_lang=None, trg_lang=None, eos_token="
     flattened_pair = ( ([model.TRG.vocab.itos[i] for i in trg], pred) for batch_trg, batch_pred in translated_batched_pair for trg, pred in zip(batch_trg, batch_pred) )
     flat_labels, predictions = [list(l) for l in zip(*flattened_pair)]
     labels = [[_revert_trg(l, eos_token)] for l in flat_labels] # remove <sos> and <eos> also updim the trg for 3D requirements.
-    print("Bleu score: ")
-    print("predictions: ", predictions)
-    print("labels: ", labels)
     return bleu_score(predictions, labels)
