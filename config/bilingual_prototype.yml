@@ -14,9 +14,6 @@ build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.
     - <pad>
     - <sos>
     - <eos>
-  tokenize:
-    src: laonlp.tokenize.word_tokenize
-    trg: sunderthesea.word_tokenize
   # data augmentation section
 # model parameters section
 device: cuda
