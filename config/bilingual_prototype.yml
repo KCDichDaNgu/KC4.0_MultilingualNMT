@@ -14,7 +14,7 @@ build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.
     - <pad>
     - <sos>
     - <eos>
-  tokenizer: # tokenizer for src and trg. See torchtext.data.utils.get_tokenizer for more details
+  tokenize:
     src: laonlp.tokenize.word_tokenize
     trg: sunderthesea.word_tokenize
   # data augmentation section
@@ -47,7 +47,7 @@ n_warmup_steps: 4000
 label_smoothing: 0.1
 dropout: 0.1
 # training config, evaluation, save & load section
-batch_size: 32
+batch_size: 64
 epochs: 20
 printevery: 200
 save_checkpoint_epochs: 1
