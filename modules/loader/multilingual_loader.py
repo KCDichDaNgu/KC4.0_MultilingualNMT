@@ -1,13 +1,13 @@
 import io, os
 import dill as pickle
 from collections import Counter
-
 import torch
 from torchtext.data import BucketIterator, Dataset, Example, Field, interleave_keys
 import modules.constants as const
 from utils.save import load_vocab_from_path
 from utils.data import generate_language_token
 from modules.loader.default_loader import DefaultLoader
+import laonlp, underthesea
 
 class MultiDataset(Dataset):
     """
@@ -89,7 +89,7 @@ class MultiLoader(DefaultLoader):
         return os.path.isfile(path + '.' + lang)
 
     def build_field(self, **kwargs):
-        return Field(lower=False, tokenize=tokenize.word_tokenize), Field(lower=False, tokenize=word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
+        return Field(lower=False, tokenize=laonlp.tokenize.word_tokenize), Field(lower=False, tokenize=underthesea.word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
 
     def build_vocab(self, fields, model_path=None, data=None, **kwargs):
         """Build the vocabulary object for torchtext Field. There are three flows:
