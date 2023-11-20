@@ -72,12 +72,12 @@ class DefaultLoader:
         with io.open(vocab_src, "r", encoding="utf-8") as svf:
           mock_counter = Counter({w.strip():1 for w in svf.readlines()})
           special_tokens = [src_field.unk_token, src_field.pad_token, src_field.init_token, src_field.eos_token]
-          src_field.vocab = src_field.vocab_cls(mock_counter, specials=special_tokens, min_freq=1, **kwargs)
+          src_field.vocab = src_field.vocab_cls(mock_counter, specials=special_tokens, min_freq=5, **kwargs)
         vocab_trg = external_vocab_location + trg_ext
         with io.open(vocab_trg, "r", encoding="utf-8") as tvf:
           mock_counter = Counter({w.strip():1 for w in tvf.readlines()})
           special_tokens = [trg_field.unk_token, trg_field.pad_token, trg_field.init_token, trg_field.eos_token]
-          trg_field.vocab = trg_field.vocab_cls(mock_counter, specials=special_tokens, min_freq=1, **kwargs)
+          trg_field.vocab = trg_field.vocab_cls(mock_counter, specials=special_tokens, min_freq=5, **kwargs)
     else:
       print("Load vocab from path successful.")
 
