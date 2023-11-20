@@ -8,3 +8,4 @@ dill
 pandas
 laonlp
 underthesea
+perl
