@@ -228,8 +228,8 @@ class Transformer(nn.Module):
             trans_batch = self.translate_batch(batch, trg_lang=trg_lang, output_tokens=output_tokens, input_max_length=input_max_length)
 #            raise Exception(detokenized_batch)
             translated.extend(trans_batch)
-            for line in trans_batch:
-                print(line)
+            # for line in trans_batch:
+            #     print(line)
         return translated
 
     def translate_batch(self, batch_sentences, src_lang=None, trg_lang=None, output_tokens=False, input_max_length=None):
