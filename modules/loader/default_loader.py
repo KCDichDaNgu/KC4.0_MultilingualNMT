@@ -44,7 +44,7 @@ class DefaultLoader:
 
   def build_field(self, **kwargs):
     """Build fields that will handle the conversion from token->idx and vice versa. To be overriden by MultiLoader."""
-    return Field(lower=False, tokenize=laonlp.tokenize.word_tokenize), Field(lower=False, tokenize=underthesea.word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
+    return Field(lower=False, tokenize=laonlp.tokenize.word_tokenize), Field(lower=False, tokenize=underthesea.word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS, is_target=True)
 
   def build_vocab(self, fields, model_path=None, data=None, **kwargs):
     """Build the vocabulary object for torchtext Field. There are three flows:
