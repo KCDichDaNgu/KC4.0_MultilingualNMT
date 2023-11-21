@@ -8,7 +8,7 @@ from collections import Counter
 
 import modules.constants as const
 from utils.save import load_vocab_from_path
-import laonlp, underthesea
+import laonlp
 
 class DefaultLoader:
   def __init__(self, train_path_or_name, language_tuple=None, valid_path=None, eval_path=None, option=None):
