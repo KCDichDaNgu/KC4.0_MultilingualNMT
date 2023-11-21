@@ -1,0 +1,2 @@
+- Thêm dấu chấm vào tất cả các câu không có 
+- Nếu lặp trong file Lào/Việt -> xóa cả ở cả 2
