@@ -45,7 +45,7 @@ label_smoothing: 0.1
 dropout: 0.1
 # training config, evaluation, save & load section
 batch_size: 32
-epochs: 30
+epochs: 40
 printevery: 200
 save_checkpoint_epochs: 1
 maximum_saved_model_eval: 2
