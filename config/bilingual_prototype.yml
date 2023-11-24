@@ -1,6 +1,6 @@
 # data location and config section
 data:
-  train_data_location: data/pre_processed/train2023
+  train_data_location: data/pre_processed/train1000
   eval_data_location:  data/pre_processed/dev2023
   src_lang: .lo 
   trg_lang: .vi 
@@ -8,7 +8,7 @@ log_file_models: 'model.log'
 lowercase: false
 build_vocab_kwargs: # additional arguments for build_vocab. See torchtext.vocab.Vocab for mode details
 #  max_size: 50000
-  min_freq: 3
+  min_freq: 4
   specials:
     - <unk>
     - <pad>
@@ -42,10 +42,10 @@ optimizer_params:
   eps: !!float 1e-9
 n_warmup_steps: 4000
 label_smoothing: 0.1
-dropout: 0.1
+dropout: 0.05
 # training config, evaluation, save & load section
 batch_size: 32
-epochs: 25
+epochs: 40
 printevery: 200
 save_checkpoint_epochs: 1
 maximum_saved_model_eval: 5

@@ -7,5 +7,4 @@ PyYAML
 dill
 pandas
 laonlp
-underthesea
 perl

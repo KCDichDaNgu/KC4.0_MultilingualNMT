@@ -7,7 +7,7 @@ import modules.constants as const
 from utils.save import load_vocab_from_path
 from utils.data import generate_language_token
 from modules.loader.default_loader import DefaultLoader
-import laonlp, underthesea
+import laonlp
 
 class MultiDataset(Dataset):
     """
@@ -80,6 +80,10 @@ class MultiLoader(DefaultLoader):
         self._option = option
         
     @property
+    def tokenize(self, sentence):
+        return sentence.strip().split()
+        
+        
     def language_tuple(self):
         """Currently output valid data's tuple for bleu_valid_iter, which would use <{trg_lang}> during inference. Since <{src_lang}> had already been added to the valid data, return None instead."""
         return None, self._valid_info["trg_lang"]
@@ -89,7 +93,7 @@ class MultiLoader(DefaultLoader):
         return os.path.isfile(path + '.' + lang)
 
     def build_field(self, **kwargs):
-        return Field(lower=False, tokenize=laonlp.tokenize.word_tokenize), Field(lower=False, tokenize=underthesea.word_tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
+        return Field(lower=False, tokenize=laonlp.tokenize.word_tokenize), Field(lower=False, tokenize=self.tokenize, init_token=const.DEFAULT_SOS, eos_token=const.DEFAULT_EOS)
 
     def build_vocab(self, fields, model_path=None, data=None, **kwargs):
         """Build the vocabulary object for torchtext Field. There are three flows:
