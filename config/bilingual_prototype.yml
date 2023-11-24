@@ -1,7 +1,7 @@
 # data location and config section
 data:
-  train_data_location: data/test/train2023
-  eval_data_location:  data/test/dev2023
+  train_data_location: data/prepared/train2023
+  eval_data_location:  data/prepared/dev2023
   src_lang: .lo 
   trg_lang: .vi 
 log_file_models: 'model.log'
@@ -31,7 +31,7 @@ decode_strategy_kwargs:
     - 0 # head
 input_max_length: 300 # input longer than this value will be trimmed in inference. Note that this values are to be used during cached PE, hence, validation set with more than this much tokens will call a warning for the trimming.
 max_length: 160 # only perform up to this much timestep during inference
-train_max_length: 150 # training samples with this much length in src/trg will be discarded
+train_max_length: 140 # training samples with this much length in src/trg will be discarded
 # optimizer and learning arguments section
 lr: 0.2
 optimizer: AdaBelief
@@ -42,11 +42,11 @@ optimizer_params:
   eps: !!float 1e-9
 n_warmup_steps: 4000
 label_smoothing: 0.1
-dropout: 0.1
+dropout: 0.05
 # training config, evaluation, save & load section
 batch_size: 32
 epochs: 40
 printevery: 200
 save_checkpoint_epochs: 1
-maximum_saved_model_eval: 2
-maximum_saved_model_train: 2
+maximum_saved_model_eval: 5
+maximum_saved_model_train: 5
